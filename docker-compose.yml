@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   minio:
     image: minio/minio:latest
@@ -40,7 +38,7 @@ services:
       POSTGRES_PASSWORD: iceberg_password
     volumes:
       # Пробрасываем скрипт инициализации служебных таблиц
-      - ./postgres-init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - ./postgres/init:/docker-entrypoint-initdb.d:ro
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U iceberg_user -d iceberg_catalog"]
       interval: 10s
