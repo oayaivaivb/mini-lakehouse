@@ -37,7 +37,6 @@ services:
       POSTGRES_USER: iceberg_user
       POSTGRES_PASSWORD: iceberg_password
     volumes:
-      # Пробрасываем скрипт инициализации служебных таблиц
       - ./postgres/init:/docker-entrypoint-initdb.d:ro
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U iceberg_user -d iceberg_catalog"]
