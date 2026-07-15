@@ -65,6 +65,7 @@ chmod +x healthcheck/check_services.sh
 ./healthcheck/check_services.sh
 
 ```
+![Скриншот показывает результат работы скрипта healthcheck/check_services.sh. Все четыре проверки прошли успешно](docs/screenshots/healthcheck.png)
 
 ### 4. Инициализация и работа с данными
 
@@ -92,7 +93,9 @@ cat sql/04_select_join.sql | docker compose exec -T trino trino
 После запуска контейнеров доступны следующие веб-интерфейсы:
 
 * 🐘 **Trino UI:** [http://localhost:8080](http://localhost:8080) *(Логин: любой, например `admin`, без пароля)* — Мониторинг выполнения SQL-запросов.
+![Скриншот показывает историю выполненных запросов в интерфейсе Trino. Все 7 запросов успешно завершены (статус FINISHED)](docs/screenshots/trino_query.png)
 * 🪣 **MinIO Console:** [http://localhost:9001](http://localhost:9001) *(Логин: `minio_admin` / Пароль: `minio_password`)* — Просмотр S3-бакетов и Parquet-файлов.
+![Скриншот демонстрирует интерфейс MinIO Object Browser, где отображается содержимое корзины iceberg](docs/screenshots/minio_bucket.png)
 
 ---
 
@@ -100,14 +103,21 @@ cat sql/04_select_join.sql | docker compose exec -T trino trino
 
 ```text
 mini-lakehouse/
-├── docs/                                 # Документация (итоги встреч, бэклог, ретроспектива)
+├── docs/                                 # Документация проекта
+│   ├── screenshots/                      # Скриншоты интерфейсов и проверок
+│   │   ├── healthcheck.png
+│   │   ├── minio_bucket.png
+│   │   └── trino_query.png
+│   └── architecture.drawio               # Схема архитектуры платформы
+│   
+│   
+│   
 ├── healthcheck/
 │   ├── check_services.sh                 # Баш-скрипт проверки портов и БД
 │   └── check_trino.sql                   # SQL-проверка для Trino
 ├── postgres/
 │   └── init/
 │       └── 01_init_service_db.sql        # Скрипт инициализации системных таблиц Iceberg
-├── screenshots/                          # Скриншоты UI для сдачи проекта
 ├── sql/
 │   ├── 01_create_schema.sql              # Создание namespace
 │   ├── 02_create_tables.sql              # Создание таблиц (Iceberg + PG)
@@ -118,7 +128,8 @@ mini-lakehouse/
 │   └── catalog/
 │       ├── iceberg.properties            # Конфиг подключения Iceberg -> MinIO/PG
 │       └── postgresql.properties         # Конфиг подключения Trino -> PG (сервисная БД)
-├── architecture.drawio                   # Схема архитектуры платформы
 ├── docker-compose.yml                    # Манифест инфраструктуры
 └── README.md                             # Описание проекта
+
+```
 
