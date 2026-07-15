@@ -1,1 +1,0 @@
-На встрече с PO обсуждались требования к проекту. Было предложено не брать все технологии сразу. Требования разделены по MoSCoW. В Must-have попали запуск через Docker Compose, Trino, Iceberg, MinIO, PostgreSQL, SQL-скрипты, JOIN, time travel, README и draw.io схема. В Could-have вынесены Airflow, Kafka, ClickHouse и dashboard (оставлены для будущих этапов).
